@@ -1,0 +1,8 @@
+conctrollers
+szukanie miejsca
+/get miejsca/ <- parametry miasto data rodzaj wydarzenia
+
+zarzadzanie wydarzeniem
+/get wydarzenie/ <- zwraca wszystkie wydarzenia danego użytkownika
+/get wydarzenie/:id <- zwraca informacje o konrektnym wydarzeniu
+/put wydarzenie tworzy nowe wydarzenie
