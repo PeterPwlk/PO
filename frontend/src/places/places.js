@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import {connect} from 'react-redux';
 import EventTypeSelect from '../components/eventTypeSelect';
 import {requestPlaces, selectEventCity, requestEventTypes, selectEventType} from '../actions/places_actions';
-import {Grid, Row, Col, Button, FormControl} from 'react-bootstrap';
+import {Grid, Row, Col, FormControl} from 'react-bootstrap';
+import {Link } from "react-router-dom";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import PlacesList from '../components/placesList';
 import "./places.css";
 import "../App.css";
 
@@ -57,7 +57,7 @@ class Places extends Component {
   }
   render() {
     return (
-      <Grid style={{width: "800px"}} className="places">
+      <Grid style={{width: "750px"}} className="places">
           <Row>
             <Col md={6}>
               <p style={{margin: "0", marginTop: "10px"}}>Wybierz date imprezy:</p>
@@ -77,9 +77,10 @@ class Places extends Component {
             </Col>
           </Row>
           <Row style={{display: "flex", justifyContent: "center"}}>
-              <button onClick={() => this.props.onRequestPlaces(this.props.placesQuery)} className="btn-style">Szukaj Miejsca!</button>
+          <Link to="/znalezioneMiejsca" >
+            <button onClick={() => this.props.onRequestPlaces(this.props.placesQuery)} className="btn-style">Szukaj Miejsca!</button>
+          </Link> 
           </Row>
-          <PlacesList places={this.props.placesRequest.places}/>
       </Grid>
     );
   }

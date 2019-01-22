@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  width: 800px;
+  margin: auto;
+}
+
+.content{
+  padding: 5px;
+  border: 2px solid #eb4486;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .logo-name{

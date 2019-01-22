@@ -1,0 +1,28 @@
+
+
+.navigation{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: 2px solid #eb4486;
+}
+
+.navigation li{
+   margin: 10px; 
+   padding: 10px;
+   border-left: 2px dashed whitesmoke;
+   border-right: 2px dashed whitesmoke;
+}
+.navigation li:hover{
+   background-color: lightblue;
+ }
+.navigation li a {
+    color: #eb4486;
+    font-size: 18px;
+    font-weight: 700;
+}
+.navigation li a:hover {
+   text-decoration: none;
+}
