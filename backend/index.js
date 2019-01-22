@@ -27,12 +27,23 @@ app.get('/miejsca',(req, res) => {
     }
 );
 
-app.post('/miejsca', (req, res) => {
-    db.distinct()
-    .select('miejsca.nazwa','miejsca.opis','udogodnienia.opis_u','miasto','ulica','numer','miejscarodzajewydarzen.rodzajwydarzenia')
+app.get('/rodzajeWydarzen',async (req, res) => {
+    try{
+        const rodzajeWydarzen = await db.select('nazwa').from('rodzaje_wydarzen');
+        res.send(rodzajeWydarzen);
+    }
+    catch (e) {
+        console.log(e);
+    }
+});
+
+app.post('/miejsce', (req, res) => {
+    db
+    .select('miejsca.nazwa','miejsca.opis','udogodnienia.opis_u','miasto','ulica','numer')
     .from('miejsca')
     .leftJoin('udogodnienia', 'miejsca.nazwa','=','udogodnienia.nazwa')
     .leftJoin('miejscarodzajewydarzen','miejsca.id','=','miejscarodzajewydarzen.miejsceid')
+    .distinct()
     .modify(function(queryBuilder){
         if(req.body.miasto)queryBuilder.where('miasto', req.body.miasto);
         if(req.body.rodzajWydarzenia)queryBuilder.where('miejscarodzajewydarzen.rodzajwydarzenia',req.body.rodzajWydarzenia)
@@ -52,12 +63,12 @@ app.get('/wydarzenie', (req,res) =>{
 app.get('/wydarzenie/:id', async (req,res,next) =>{
     try{
         const {id} = req.params;
-        console.log(id);
-        const wydarzenie = await db.select('*').from('wydarzenia').where('organizatorzyid',id);
-        // const goscie = await db.select('imie','nazwisko').from('goscie').where('wydarzeniaid',id);
+        const wydarzenie = await db.select('*').from('wydarzenia').where('id',id);
+        const goscie = await db.select('imie','nazwisko').from('goscie').where('wydarzeniaid',id);
         // const uslugodawcy = await db.select('nazwa')
         // .from('zlecenia').leftJoin('uslugodawcy','zlecenia.uslugodawcyid','=','uslugodawcy.uslugodawcyid');
-        res.send(wydarzenie);
+        const eventData = {event: wydarzenie, guests: goscie};
+        res.json(eventData);
     } catch (e) {
         console.log(e);
         next(e);

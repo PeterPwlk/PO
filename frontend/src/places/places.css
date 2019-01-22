@@ -1,0 +1,27 @@
+.day-picker-size{
+    font-size: 16px;
+}
+.input-width{
+    width: 60%;
+    margin-top: 50px;
+}
+.text-left{
+    text-align: left;
+}
+.text-margin-top{
+    margin-top: 20px;
+}
+.places{
+    background-color: #215b7b;
+    color: whitesmoke;
+    font-size: 16px;
+}
+.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover{
+    background-color: #eb4486;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside){
+    background-color: #eb4486;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover{
+    background-color: #eb4486;
+}
