@@ -6,11 +6,12 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {placesQuery,request} from './reducers/places_reducers';
+import {requestEvents, newEvent} from "./reducers/events_reducers";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const rootReducer = combineReducers({placesQuery,request});
+const rootReducer = combineReducers({placesQuery,request,requestEvents, newEvent});
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 ReactDOM.render(

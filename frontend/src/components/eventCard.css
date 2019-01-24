@@ -1,0 +1,15 @@
+.eventCard{
+    color: #eb4486;
+    border: 1px solid #eb4486;
+    margin-top: 20px;
+}
+.eventCard p{
+    color: whitesmoke;
+}
+.eventCard button{
+    margin-bottom: 20px;
+}
+.eventCard img{
+    width: 250px;
+    margin: auto;
+}

@@ -1,0 +1,9 @@
+.pageTitle{
+    color: #eb4486;
+    display: inline-block;
+    padding-left: 150px;
+}
+.btn-new-event{
+    position: relative;
+    left: 100px;
+}

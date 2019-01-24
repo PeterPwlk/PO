@@ -52,12 +52,22 @@ app.post('/miejsce', (req, res) => {
     .catch(err => console.log(err))
 });
 
-app.get('/wydarzenie', (req,res) =>{
-    const guestsNumber = db('wydarzenia').leftJoin('goscie','wydarzenia.id','=','goscie.wydarzeniaid')
-    .count('goscie.id').groupBy('wydarzenia.id').as('guestsNumber');
-    db.select('*',guestsNumber).from('wydarzenia')
-    .then(data => res.json(data))
-    .catch(err => console.log(err))
+app.get('/wydarzenia',async (req,res) =>{
+  try { 
+    const wydarzenia = await  db.select('*').from('wydarzenia');
+    const data = wydarzenia.map(async event =>  {
+        const guestsNumber = await db('wydarzenia').leftJoin('goscie','wydarzenia.id','=','goscie.wydarzeniaid')
+        .count('goscie.id').groupBy('wydarzenia.id').as('guestsNumber').where('wydarzenia.id',event.id);
+        return({...event, guestsNumber: guestsNumber[0].count});
+    });
+    Promise.all(data)
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 app.get('/wydarzenie/:id', async (req,res,next) =>{
@@ -84,8 +94,10 @@ app.put('/wydarzenie', (req,res) => {
         rodzaj_wydarzenia: type,
         data_wydarzenia: date
     })
-    .returning('*')
-    .then(data => res.json(data))
+    .returning("*")
+    .then(data => {
+        data.guestsNumber = 0;
+        res.json(data)})
     .catch(err => console.log(err))
 });
 

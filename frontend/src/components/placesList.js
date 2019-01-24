@@ -33,7 +33,7 @@ class PlacesList extends Component{
               </Col>
               <Col md={3}>
                 <p className="placeCard-rating placeCard-text">
-                  <bold>Ocena:</bold>{" "}
+                  Ocena:{" "}
                   <Badge>{Math.floor(Math.random() * (5 - 3) + 3)}</Badge>
                 </p>
                 <button className="btn-style">Szczegóły</button>

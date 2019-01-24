@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import Places from "./places/places";
+import Places from "./components/places";
 import PlacesList from "./components/placesList";
-import { Image } from "react-bootstrap";
+import { Image, Grid } from "react-bootstrap";
 import { BrowserRouter as Router, Route, } from "react-router-dom";
 import NavBar from "./components/navBar";
-import WelcomePage from "./welcomePage";
+import WelcomePage from "./components/welcomePage";
+import EventsList from "./components/eventsList";
+import EventNew from "./components/eventNew";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <Router >
-        <div className="App">
+        <Grid className="App">
           <div
             style={{
               display: "flex",
@@ -28,8 +30,10 @@ class App extends Component {
             <Route path="/" exact component={WelcomePage} />
             <Route path="/szukajMiejsca" component={Places} />
             <Route path="/znalezioneMiejsca" component={PlacesList} />
+            <Route path="/twojeWydarzenia" component={EventsList} />
+            <Route path="/noweWydarzenie" component={EventNew} />
           </div>
-        </div>
+        </Grid>
       </Router>
     );
   }

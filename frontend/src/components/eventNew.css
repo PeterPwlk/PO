@@ -1,0 +1,17 @@
+.event-new{
+    color: whitesmoke;
+}
+.event-new p{
+    font-size: 18px;
+}
+.event-new h1{
+    color: #eb4486;
+}
+.message{
+    position: absolute;
+    bottom: 100px;
+    left: 480px;
+    background-color: cadetblue;
+    border: 2px solid pink;
+    padding: 30px;
+}
